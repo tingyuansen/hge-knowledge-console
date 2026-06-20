@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-accent="ink-blue" data-density="regular" data-grid="on">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>HGE Knowledge Console</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app"></div>
+
+<!-- Backend URL resolution:
+       1. ?api=... query param (ad-hoc override, e.g. ?api=http://127.0.0.1:8000)
+       2. an explicitly pre-set window.__HGE_API__
+       3. localhost  -> local backend; anything else -> the live Fly backend.
+     This lets the same file work on GitHub Pages (live) and locally (dev). -->
+<script>
+  (function () {
+    var qp = new URLSearchParams(location.search).get('api');
+    var isLocal = /^(localhost|127\.|0\.0\.0\.0$)/.test(location.hostname);
+    window.__HGE_API__ = qp || window.__HGE_API__ ||
+      (isLocal ? 'http://127.0.0.1:8000' : 'https://hge-knowledge-api.fly.dev');
+  })();
+</script>
+
+<!-- React + Babel pinned to required exact versions -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<!-- Data layer (vanilla; loads JSON, sets window.HGE) -->
+<script src="app/data.js"></script>
+
+<!-- Tweaks panel scaffold (host protocol + controls) -->
+<script type="text/babel" src="app/tweaks-panel.jsx"></script>
+
+<!-- Components -->
+<script type="text/babel" src="app/icons.jsx"></script>
+<script type="text/babel" src="app/utils.jsx"></script>
+<script type="text/babel" src="app/atlas.jsx"></script>
+<script type="text/babel" src="app/footprint.jsx"></script>
+<script type="text/babel" src="app/design-lever.jsx"></script>
+<script type="text/babel" src="app/answer.jsx"></script>
+<script type="text/babel" src="app/rail.jsx"></script>
+<script type="text/babel" src="app/detail.jsx"></script>
+<script type="text/babel" src="app/header.jsx"></script>
+<script type="text/babel" src="app/tweaks.jsx"></script>
+<script type="text/babel" src="app/main.jsx"></script>
+</body>
+</html>
