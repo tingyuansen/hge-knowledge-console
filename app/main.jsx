@@ -451,9 +451,9 @@ function Splitter({ side }) {
 
 function AskingOverlay() {
   // top-of-main banner with a determinate-ish phased message + animated dots.
-  // The dispatcher is gpt-5.4-mini (~3-5s), then primitives execute (~1-3s),
-  // then synth gpt-5.4 (~5-12s). We rotate phases on a timer to give a sense
-  // of progress without faking a real timeline.
+  // Gemini-3.5-Flash dispatches (~2-4s), then primitives execute (~1-3s),
+  // then Gemini-3.5-Flash synthesises (~4-10s). We rotate phases on a timer to
+  // give a sense of progress without faking a real timeline.
   const PHASES = [
     'planning · selecting retrieval primitives',
     'executing · concept_search · spec_query · community_overview',

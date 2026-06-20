@@ -4,8 +4,8 @@
    conversation history is threaded through every /ask call so the
    dispatcher can resolve pronouns. All evidence quotes, retrieval
    rankings, theme membership, etc. come from the real backend (which runs
-   hybrid BM25+dense retrieval, T3 default-exclusion, and a gpt-5.4
-   dispatch + gpt-5.4 synth loop).
+   hybrid BM25+dense retrieval, T3 default-exclusion, and a Gemini-3.5-Flash
+   dispatch + synth loop).
 
    Two-stage bootstrap: stage 0 mounts the React tree IMMEDIATELY with
    stub atlas + scatter so the page renders without waiting; stage 1
